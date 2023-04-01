@@ -9,15 +9,15 @@ using Microsoft.AspNetCore.Http;
 using IntegorGlobalConstants;
 using ExtensibleRefreshJwtAuthentication.Access.Tokens;
 
-namespace ExtensibleJwtAuthenticationTokensImplementations.TokensAccess
+namespace ExtensibleJwtAuthenticationTokensImplementations.TokensAccess.Access
 {
     using Internal.TokensAccess;
 
-    public class HttpContextAccessTokenCookieAccessor : IHttpContextAccessTokenAccessor
-	{
+    public class ProcessRequestAccessTokenCookieAccessor : IProcessRequestAccessTokenAccessor
+    {
         private HttpContext _http;
 
-        public HttpContextAccessTokenCookieAccessor(IHttpContextAccessor http)
+        public ProcessRequestAccessTokenCookieAccessor(IHttpContextAccessor http)
         {
             _http = http.HttpContext;
         }
