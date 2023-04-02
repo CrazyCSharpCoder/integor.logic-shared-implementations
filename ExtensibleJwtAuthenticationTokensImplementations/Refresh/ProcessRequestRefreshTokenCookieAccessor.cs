@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Http;
 using IntegorGlobalConstants;
 using ExtensibleRefreshJwtAuthentication.Refresh.Tokens;
 
-namespace ExtensibleJwtAuthenticationTokensImplementations.TokensAccess.Refresh
+namespace ExtensibleJwtAuthenticationTokensImplementations.Refresh
 {
-    using Internal.TokensAccess;
+    using Internal;
 
     public class ProcessRequestRefreshTokenCookieAccessor : IProcessRequestRefreshTokenAccessor
     {

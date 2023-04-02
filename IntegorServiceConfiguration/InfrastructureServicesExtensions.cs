@@ -27,8 +27,8 @@ using ExtensibleRefreshJwtAuthentication.Access.Tokens;
 using ExtensibleRefreshJwtAuthentication.Refresh.Tokens;
 
 using ExtensibleJwtAuthenticationTokensImplementations;
-using ExtensibleJwtAuthenticationTokensImplementations.TokensAccess.Access;
-using ExtensibleJwtAuthenticationTokensImplementations.TokensAccess.Refresh;
+using ExtensibleJwtAuthenticationTokensImplementations.Access;
+using ExtensibleJwtAuthenticationTokensImplementations.Refresh;
 
 using IntegorLogicShared.MicroserviceSpecific.Authorization;
 

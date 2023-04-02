@@ -5,8 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using ExtensibleRefreshJwtAuthentication.Access.Tokens;
 using ExtensibleRefreshJwtAuthentication.Refresh.Tokens;
 
-using ExtensibleJwtAuthenticationTokensImplementations.TokensAccess.Access;
-using ExtensibleJwtAuthenticationTokensImplementations.TokensAccess.Refresh;
+using ExtensibleJwtAuthenticationTokensImplementations.Access;
+using ExtensibleJwtAuthenticationTokensImplementations.Refresh;
 
 using IntegorPublicDto.Authorization.Users;
 
