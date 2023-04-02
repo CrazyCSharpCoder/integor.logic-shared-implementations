@@ -46,8 +46,8 @@ namespace IntegorServiceConfiguration
 
 		public static IServiceCollection AddAuthenticationTokensProcessing(this IServiceCollection services)
 		{
-			services.AddSingleton<IProcessRequestAccessTokenAccessor, ProcessRequestAccessTokenCookieAccessor>();
-			services.AddSingleton<IProcessRequestRefreshTokenAccessor, ProcessRequestRefreshTokenCookieAccessor>();
+			services.AddScoped<IProcessRequestAccessTokenAccessor, ProcessRequestAccessTokenCookieAccessor>();
+			services.AddScoped<IProcessRequestRefreshTokenAccessor, ProcessRequestRefreshTokenCookieAccessor>();
 
 			return services;
 		}
