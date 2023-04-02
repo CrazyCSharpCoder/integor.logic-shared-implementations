@@ -11,9 +11,9 @@ namespace ExtensibleJwtAuthenticationTokensImplementations
 	public class StandardClaimTypesNamer : IClaimTypesNamer
 	{
 		private const string _username = "Username";
-		private const string _userId = "UserId";
+		private const string _userRole = "UserRole";
 
 		public string UsernameClaimType => _username;
-		public string UserRoleClaimType => _userId;
+		public string UserRoleClaimType => _userRole;
 	}
 }
