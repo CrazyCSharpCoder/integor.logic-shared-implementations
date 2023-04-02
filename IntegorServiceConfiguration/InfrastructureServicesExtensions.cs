@@ -59,7 +59,7 @@ namespace IntegorServiceConfiguration
 
 			services.AddScoped<IUserCachingService, StandardUserCachingService>();
 
-			services.AddSingleton<UserRolesConverter>();
+			services.AddSingleton<UserRolesEnumConverter>();
 
 			return services;
 		}

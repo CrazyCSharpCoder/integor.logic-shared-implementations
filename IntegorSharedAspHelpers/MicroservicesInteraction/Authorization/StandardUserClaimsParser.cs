@@ -21,9 +21,9 @@ namespace IntegorSharedAspHelpers.MicroservicesInteraction.Authorization
 		private readonly string _usernameClaim;
 		private readonly string _userRoleClaim;
 
-		private UserRolesConverter _rolesConverter;
+		private UserRolesEnumConverter _rolesConverter;
 
-		public StandardUserClaimsParser(IClaimTypesNamer claimTypes, UserRolesConverter rolesConverter)
+		public StandardUserClaimsParser(IClaimTypesNamer claimTypes, UserRolesEnumConverter rolesConverter)
         {
 			_rolesConverter = rolesConverter;
 
