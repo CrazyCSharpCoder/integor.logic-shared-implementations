@@ -40,7 +40,7 @@ namespace IntegorSharedAspHelpers.MicroservicesInteraction.Authorization
 			return Int32.Parse(strId);
 		}
 
-		public string GetUserame(IEnumerable<Claim> claims)
+		public string GetUsername(IEnumerable<Claim> claims)
 			=> GetClaimByType(claims, _usernameClaim).Value;
 
 		public UserRoles GetUserRole(IEnumerable<Claim> claims)
