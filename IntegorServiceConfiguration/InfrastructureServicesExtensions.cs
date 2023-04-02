@@ -64,26 +64,15 @@ namespace IntegorServiceConfiguration
 			return services;
 		}
 
-		public static IMvcBuilder AddConfiguredControllers(this IServiceCollection services)
+		public static IMvcBuilder AddConfiguredControllers(
+			this IServiceCollection services, params Type[] exceptionConverters)
 		{
 			services.AddScoped<SetProcessedFilter>();
 
 			return services.AddControllers(options =>
 			{
-				Type[] excConverters = new Type[]
-				{
-					typeof(IExceptionErrorConverter<Exception>),
-
-					typeof(IExceptionErrorConverter<PostgresException>),
-					typeof(IExceptionErrorConverter<SocketException>),
-					typeof(IExceptionErrorConverter<DbUpdateException>),
-
-					typeof(IExceptionErrorConverter<ObjectDisposedException>),
-					typeof(IExceptionErrorConverter<InvalidOperationException>)
-				};
-
 				options.Filters.Add(new DecorateErrorsResponseAttribute());
-				options.Filters.Add(new ExtensibleExeptionHandlingLazyFilterFactory(excConverters));
+				options.Filters.Add(new ExtensibleExeptionHandlingLazyFilterFactory(exceptionConverters));
 				options.Filters.Add(new ServiceFilterAttribute(typeof(SetProcessedFilter)));
 			})
 			.ConfigureApiBehaviorOptions(options =>
