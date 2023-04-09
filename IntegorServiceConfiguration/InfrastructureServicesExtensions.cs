@@ -7,11 +7,8 @@ using Npgsql;
 using Microsoft.Extensions.DependencyInjection;
 
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 
-using IntegorErrorsHandling;
 using IntegorErrorsHandling.Filters;
-using IntegorErrorsHandling.Converters;
 
 using IntegorSharedResponseDecorators.Shared.Attributes;
 
@@ -62,44 +59,6 @@ namespace IntegorServiceConfiguration
 			services.AddSingleton<UserRolesEnumConverter>();
 
 			return services;
-		}
-
-		public static IMvcBuilder AddConfiguredControllers(
-			this IServiceCollection services, params Type[] exceptionConverters)
-		{
-			services.AddScoped<SetProcessedFilter>();
-
-			return services.AddControllers(options =>
-			{
-				options.Filters.Add(new DecorateErrorsResponseAttribute());
-				options.Filters.Add(new ExtensibleExeptionHandlingLazyFilterFactory(exceptionConverters));
-				options.Filters.Add(new ServiceFilterAttribute(typeof(SetProcessedFilter)));
-			})
-			.ConfigureApiBehaviorOptions(options =>
-			{
-				options.InvalidModelStateResponseFactory = OnInvalidModelStateResponse;
-			});
-		}
-
-		private static IActionResult OnInvalidModelStateResponse(ActionContext context)
-		{
-			IServiceProvider services = context.HttpContext.RequestServices;
-
-			IErrorConverter<ModelStateDictionary> converter =
-				services.GetRequiredService<IErrorConverter<ModelStateDictionary>>();
-
-			IResponseErrorsObjectCompiler errorsCompiler =
-				services.GetRequiredService<IResponseErrorsObjectCompiler>();
-
-			IHttpContextProcessedMarker processedMarker =
-				services.GetRequiredService<IHttpContextProcessedMarker>();
-
-			IErrorConvertationResult convertResult = converter.Convert(context.ModelState)!;
-			object errorBody = errorsCompiler.CompileResponse(convertResult);
-
-			processedMarker.SetProcessed(true);
-
-			return new BadRequestObjectResult(errorBody);
 		}
 	}
 }
