@@ -12,6 +12,7 @@ using IntegorPublicDto.Authorization.Users;
 
 using IntegorResponseDecoration.Parsing;
 using IntegorSharedResponseDecorators.Authorization.Parsers;
+using IntegorSharedResponseDecorators.Authorization.Decorators;
 
 namespace IntegorServiceConfiguration.IntegorServicesInteraction
 {
@@ -28,6 +29,11 @@ namespace IntegorServiceConfiguration.IntegorServicesInteraction
 		public static IServiceCollection AddUserReceiving(this IServiceCollection services)
 		{
  			return services.AddSingleton<IDecoratedObjectParser<UserAccountInfoDto, JsonElement>, JsonDecoratedUserParser>();
+		}
+
+		public static IServiceCollection AddUserSending(this IServiceCollection services)
+		{
+			return services.AddSingleton<UserResponseObjectDecorator>();
 		}
 
 		// TODO implement for roles
