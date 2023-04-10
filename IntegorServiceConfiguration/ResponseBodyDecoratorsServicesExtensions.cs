@@ -1,8 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-using IntegorSharedResponseDecorators;
 using IntegorSharedResponseDecorators.Shared.Decorators;
-using IntegorSharedResponseDecorators.Authorization.Decorators;
 
 namespace IntegorServiceConfiguration
 {

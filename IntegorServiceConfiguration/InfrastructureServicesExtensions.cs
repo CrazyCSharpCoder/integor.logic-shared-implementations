@@ -1,19 +1,6 @@
-﻿using System;
-using System.Net.Sockets;
-
-using Microsoft.EntityFrameworkCore;
-using Npgsql;
-
-using Microsoft.Extensions.DependencyInjection;
-
-using Microsoft.AspNetCore.Mvc;
-
-using IntegorErrorsHandling.Filters;
-
-using IntegorSharedResponseDecorators.Shared.Attributes;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 using IntegorAspHelpers.Http;
-using IntegorAspHelpers.Http.Filters;
 using IntegorAspHelpers.MicroservicesInteraction.Authorization;
 
 using IntegorSharedAspHelpers.Http;
