@@ -8,9 +8,9 @@ using System.Security.Claims;
 using ExtensibleRefreshJwtAuthentication;
 
 using IntegorPublicDto.Authorization.Users;
-using IntegorLogicShared.Types.Authorization;
+using IntegorLogicShared.Types.IntegorServices.Authorization;
 
-using IntegorLogicShared.MicroserviceSpecific.Authorization;
+using IntegorLogicShared.IntegorServices.Authorization;
 using IntegorAspHelpers.MicroservicesInteraction.Authorization;
 
 namespace IntegorSharedAspHelpers.MicroservicesInteraction.Authorization

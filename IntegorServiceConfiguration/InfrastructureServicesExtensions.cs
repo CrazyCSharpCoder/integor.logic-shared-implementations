@@ -27,7 +27,7 @@ using ExtensibleJwtAuthenticationTokensImplementations;
 using ExtensibleJwtAuthenticationTokensImplementations.Access;
 using ExtensibleJwtAuthenticationTokensImplementations.Refresh;
 
-using IntegorLogicShared.MicroserviceSpecific.Authorization;
+using IntegorLogicShared.IntegorServices.Authorization;
 
 namespace IntegorServiceConfiguration
 {

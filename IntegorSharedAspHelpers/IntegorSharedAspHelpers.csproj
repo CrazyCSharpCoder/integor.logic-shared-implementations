@@ -5,11 +5,11 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <VersionPrefix>2.0.0.5</VersionPrefix>
+    <VersionPrefix>2.0.0.6</VersionPrefix>
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="IntegorAspHelpers" Version="2.0.0.7" />
+    <PackageReference Include="IntegorAspHelpers" Version="2.0.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
   </ItemGroup>
 
