@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Configuration;
 
 using IntegorAspHelpers.Http;
 using IntegorAspHelpers.MicroservicesInteraction.Authorization;
@@ -7,10 +8,9 @@ using IntegorSharedAspHelpers.Http;
 using IntegorSharedAspHelpers.MicroservicesInteraction.Authorization;
 
 using ExtensibleRefreshJwtAuthentication;
-using ExtensibleRefreshJwtAuthentication.Access.Tokens;
-using ExtensibleRefreshJwtAuthentication.Refresh.Tokens;
+using ExtensibleRefreshJwtAuthentication.Access;
+using ExtensibleRefreshJwtAuthentication.Refresh;
 
-using ExtensibleJwtAuthenticationTokensImplementations;
 using ExtensibleJwtAuthenticationTokensImplementations.Access;
 using ExtensibleJwtAuthenticationTokensImplementations.Refresh;
 
@@ -28,18 +28,12 @@ namespace IntegorServiceConfiguration
 			return services;
 		}
 
-		public static IServiceCollection AddAuthenticationTokensProcessing(this IServiceCollection services)
+		/// <param name="claimTypesConfiguration">Configuration file where ClaimTypeNames values are stored</param>
+		/// <returns></returns>
+		public static IServiceCollection AddAuthorizationServices(this IServiceCollection services, IConfiguration claimTypesConfiguration)
 		{
-			services.AddScoped<IProcessRequestAccessTokenAccessor, ProcessRequestAccessTokenCookieAccessor>();
-			services.AddScoped<IProcessRequestRefreshTokenAccessor, ProcessRequestRefreshTokenCookieAccessor>();
-
-			return services;
-		}
-
-		public static IServiceCollection AddAuthenticationServices(this IServiceCollection services)
-		{
-			services.AddSingleton<IClaimTypesNamer, StandardClaimTypesNamer>();
-			services.AddSingleton<IUserClaimsParser, StandardUserClaimsParser>();
+			services.Configure<ClaimTypeNames>(claimTypesConfiguration);
+			services.AddScoped<IUserClaimsParser, StandardUserClaimsParser>();
 
 			services.AddScoped<IUserCachingService, StandardUserCachingService>();
 

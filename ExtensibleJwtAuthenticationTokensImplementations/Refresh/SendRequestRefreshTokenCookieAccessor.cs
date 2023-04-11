@@ -8,7 +8,7 @@ using System.Net.Http;
 using IntegorGlobalConstants;
 
 using ExtensibleRefreshJwtAuthentication.TokenServices;
-using ExtensibleRefreshJwtAuthentication.Refresh.Tokens;
+using ExtensibleRefreshJwtAuthentication.Refresh;
 
 namespace ExtensibleJwtAuthenticationTokensImplementations.Refresh
 {

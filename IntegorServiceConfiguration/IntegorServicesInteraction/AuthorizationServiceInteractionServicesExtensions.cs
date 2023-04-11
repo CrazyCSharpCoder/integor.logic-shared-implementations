@@ -1,9 +1,10 @@
-﻿using System.Text.Json;
+﻿using System;
+using System.Text.Json;
 
 using Microsoft.Extensions.DependencyInjection;
 
-using ExtensibleRefreshJwtAuthentication.Access.Tokens;
-using ExtensibleRefreshJwtAuthentication.Refresh.Tokens;
+using ExtensibleRefreshJwtAuthentication.Access;
+using ExtensibleRefreshJwtAuthentication.Refresh;
 
 using ExtensibleJwtAuthenticationTokensImplementations.Access;
 using ExtensibleJwtAuthenticationTokensImplementations.Refresh;

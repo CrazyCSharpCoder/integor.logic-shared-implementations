@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Claims;
 
+using Microsoft.Extensions.Options;
+
 using ExtensibleRefreshJwtAuthentication;
 
 using IntegorPublicDto.Authorization.Users;
@@ -23,9 +25,13 @@ namespace IntegorSharedAspHelpers.MicroservicesInteraction.Authorization
 
 		private UserRolesEnumConverter _rolesConverter;
 
-		public StandardUserClaimsParser(IClaimTypesNamer claimTypes, UserRolesEnumConverter rolesConverter)
+		public StandardUserClaimsParser(
+			IOptions<ClaimTypeNames> claimTypesOptions,
+			UserRolesEnumConverter rolesConverter)
         {
 			_rolesConverter = rolesConverter;
+
+			ClaimTypeNames claimTypes = claimTypesOptions.Value;
 
 			_usernameClaim = claimTypes.UsernameClaimType;
 			_userRoleClaim = claimTypes.UserRoleClaimType;

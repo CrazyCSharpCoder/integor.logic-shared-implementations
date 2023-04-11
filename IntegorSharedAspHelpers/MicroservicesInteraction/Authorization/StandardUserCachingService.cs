@@ -12,16 +12,18 @@ namespace IntegorSharedAspHelpers.MicroservicesInteraction.Authorization
 {
 	public class StandardUserCachingService : IUserCachingService
 	{
-		public bool UserCached => throw new NotImplementedException();
+		public bool IsUserCached => _userCached != null;
+
+		private UserAccountInfoDto? _userCached = null;
 
 		public void CacheUser(UserAccountInfoDto user)
 		{
-			throw new NotImplementedException();
+			_userCached = user;
 		}
 
 		public UserAccountInfoDto? GetCachedUser()
 		{
-			throw new NotImplementedException();
+			return _userCached;
 		}
 	}
 }

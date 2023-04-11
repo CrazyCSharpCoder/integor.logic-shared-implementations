@@ -7,17 +7,17 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 
 using IntegorGlobalConstants;
-using ExtensibleRefreshJwtAuthentication.Refresh.Tokens;
+using ExtensibleRefreshJwtAuthentication.Refresh;
 
 namespace ExtensibleJwtAuthenticationTokensImplementations.Refresh
 {
     using Internal;
 
-    public class ProcessRequestRefreshTokenCookieAccessor : IProcessRequestRefreshTokenAccessor
+    public class OnServiceProcessingRefreshTokenCookieAccessor : IOnServiceProcessingRefreshTokenAccessor
     {
         private HttpContext _http;
 
-        public ProcessRequestRefreshTokenCookieAccessor(IHttpContextAccessor http)
+        public OnServiceProcessingRefreshTokenCookieAccessor(IHttpContextAccessor http)
         {
             _http = http.HttpContext;
         }
