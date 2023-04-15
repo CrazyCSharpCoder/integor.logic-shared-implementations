@@ -22,6 +22,17 @@ namespace IntegorServiceConfiguration
 {
 	public static class ErrorConvertersServicesExtensions
 	{
+		public static IServiceCollection AddResponseErrorsObjectCompiler(this IServiceCollection services)
+		{
+			return services.AddSingleton<IResponseErrorsObjectCompiler, StandardResponseErrorsObjectCompiler>();
+		}
+
+		public static IServiceCollection AddResponseErrorsObjectCompiler<TErrorsCompiler>(this IServiceCollection services)
+			where TErrorsCompiler : class, IResponseErrorsObjectCompiler
+		{
+			return services.AddSingleton<IResponseErrorsObjectCompiler, TErrorsCompiler>();
+		}
+
 		/// <summary>
 		/// Add IResponseErrorsObjectCompiler and exception converters for string, ModelStateDictionary plus status codes
 		/// </summary>
@@ -33,13 +44,13 @@ namespace IntegorServiceConfiguration
 			Dictionary<Type, Type> converterInterfacesToTypes = new Dictionary<Type, Type>()
 			{
 				{ typeof(IStringErrorConverter), typeof(StandardStringErrorConverter) },
-				{ typeof(IResponseErrorsObjectCompiler), typeof(StandardResponseErrorsObjectCompiler) },
 				{ typeof(IErrorConverter<ModelStateDictionary>), typeof(ModelStateDictionaryErrorConverter) },
 
 				{ typeof(StatusCodeErrorConverter), typeof(StatusCodeErrorConverter) }
 			};
+			services.AddExceptionConverters(converterInterfacesToTypes);
 
-			return services.AddExceptionConverters(converterInterfacesToTypes);
+			return converterInterfacesToTypes.Keys;
 		}
 
 		/// <summary>
@@ -71,17 +82,16 @@ namespace IntegorServiceConfiguration
 				{ typeof(IExceptionErrorConverter<PostgresException>), typeof(PostgresExceptionConverter) },
 				{ typeof(IExceptionErrorConverter<DbUpdateException>), typeof(DbUpdateExceptionConverter) },
 			};
+			services.AddExceptionConverters(converterInterfacesToTypes);
 
-			return services.AddExceptionConverters(converterInterfacesToTypes);
+			return converterInterfacesToTypes.Keys;
 		}
 
-		private static IEnumerable<Type> AddExceptionConverters(
+		private static void AddExceptionConverters(
 			this IServiceCollection services, Dictionary<Type, Type> converterInterfacesToTypes)
 		{
 			foreach (KeyValuePair<Type, Type> interfaceToType in converterInterfacesToTypes)
 				services.AddSingleton(interfaceToType.Key, interfaceToType.Value);
-
-			return converterInterfacesToTypes.Keys;
 		}
 	}
 }

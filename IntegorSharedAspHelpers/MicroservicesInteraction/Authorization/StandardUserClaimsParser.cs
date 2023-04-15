@@ -19,57 +19,41 @@ namespace IntegorSharedAspHelpers.MicroservicesInteraction.Authorization
 {
 	public class StandardUserClaimsParser : IUserClaimsParser
 	{
-		private const string _userIdClaim = "UserId";
-		private readonly string _usernameClaim;
-		private readonly string _userRoleClaim;
-
+		private ExtendedClaimTypesNames _claimTypes;
 		private UserRolesEnumConverter _rolesConverter;
 
 		public StandardUserClaimsParser(
-			IOptions<ClaimTypeNames> claimTypesOptions,
+			IOptions<ExtendedClaimTypesNames> claimTypesOptions,
 			UserRolesEnumConverter rolesConverter)
-        {
+		{
+			_claimTypes = claimTypesOptions.Value;
 			_rolesConverter = rolesConverter;
-
-			ClaimTypeNames claimTypes = claimTypesOptions.Value;
-
-			_usernameClaim = claimTypes.UsernameClaimType;
-			_userRoleClaim = claimTypes.UserRoleClaimType;
         }
-
-        public UserClaimNames GetClaimNames()
-			=> new UserClaimNames(_userIdClaim, _usernameClaim, _userRoleClaim);
-
-		public int GetId(IEnumerable<Claim> claims)
-		{
-			string strId = GetClaimByType(claims, _userIdClaim).Value;
-			return Int32.Parse(strId);
-		}
-
-		public string GetUsername(IEnumerable<Claim> claims)
-			=> GetClaimByType(claims, _usernameClaim).Value;
-
-		public UserRoles GetUserRole(IEnumerable<Claim> claims)
-		{
-			string strRole = GetClaimByType(claims, _userRoleClaim).Value;
-			int roleId = Int32.Parse(strRole);
-
-			return _rolesConverter.RoleIdToRolesEnum(roleId);
-		}
 
 		public Claim[] UserToClaims(UserAccountInfoDto user)
 		{
 			return new Claim[]
 			{
-				new Claim(_userIdClaim, user.Id.ToString()),
-				new Claim(_usernameClaim, user.EMail.ToString()),
-				new Claim(_userRoleClaim, user.Role.Id.ToString())
+				new Claim(_claimTypes.UserIdClaimType, user.Id.ToString()),
+				new Claim(_claimTypes.UsernameClaimType, user.EMail.ToString()),
+				new Claim(_claimTypes.UserRoleClaimType, user.Role.Id.ToString())
 			};
 		}
 
-		private Claim GetClaimByType(IEnumerable<Claim> claims, string claimType)
+		public int ParseId(string idClaimValue)
 		{
-			return claims.First(claim => claim.Type == claimType);
+			return Int32.Parse(idClaimValue);
+		}
+
+		public string ParseUsername(string usernameClaimValue)
+		{
+			return usernameClaimValue;
+		}
+
+		public UserRoles ParseUserRole(string userRoleClaimValue)
+		{
+			int roleId = Int32.Parse(userRoleClaimValue);
+			return _rolesConverter.RoleIdToRolesEnum(roleId);
 		}
 	}
 }

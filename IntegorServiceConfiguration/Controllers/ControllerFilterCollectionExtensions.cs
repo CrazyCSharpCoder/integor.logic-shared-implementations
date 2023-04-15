@@ -10,7 +10,6 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using IntegorErrorsHandling.Filters;
 using IntegorSharedResponseDecorators.Shared.Attributes;
 
-using IntegorAspHelpers.Http.Filters;
 using IntegorAspHelpers.MicroservicesInteraction.Filters;
 
 namespace IntegorServiceConfiguration.Controllers
@@ -27,11 +26,6 @@ namespace IntegorServiceConfiguration.Controllers
 			filters.Add(new ExtensibleExeptionHandlingLazyFilterFactory(exceptionConverters));
 		}
 
-		public static void AddSetProcessedByDefault(this FilterCollection filters)
-		{
-			filters.Add(new ServiceFilterAttribute(typeof(SetProcessedFilter)));
-		}
-
 		/// <summary>
 		/// Add DecorateErrorsResponseAttribute, ExtensibleExceptionHandlingLazyFilterFactory, ServiceFilterAttribute
 		/// </summary>
@@ -42,12 +36,11 @@ namespace IntegorServiceConfiguration.Controllers
 		{
 			filters.AddErrorsDecoration();
 			filters.AddErrorsHandling(exceptionConverters);
-			filters.AddSetProcessedByDefault();
 		}
 
 		public static void AddServiceErrorsToActionResult(this FilterCollection filters)
 		{
-			filters.Add(new ServiceFilterAttribute(typeof(ApplicationServiceErrorsTranslationFilterAttribute)));
+			filters.Add(new ApplicationServiceErrorsTranslationFilterAttribute());
 		}
 	}
 }

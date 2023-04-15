@@ -7,6 +7,9 @@ using IntegorErrorsHandling;
 using IntegorSharedErrorHandlers;
 
 using IntegorAspHelpers.MicroservicesInteraction;
+using IntegorAspHelpers.MicroservicesInteraction.Filters;
+using IntegorAspHelpers.MicroservicesInteraction.Filters.Internal;
+
 using IntegorSharedAspHelpers.MicroservicesInteraction;
 
 using IntegorResponseDecoration.Parsing;
@@ -26,9 +29,32 @@ namespace IntegorServiceConfiguration.IntegorServicesInteraction
 			return services;
 		}
 
-		public static IServiceCollection AddServicesErrorsToActionResultTranslation(this IServiceCollection services)
+		public static IServiceCollection AddServiceErrorsToActionResultTranslation(this IServiceCollection services)
+		{
+			services.AddServiceResponseToActionResultHelper();
+			services.AddServiceErrorsToActionResultTranslator();
+
+			services.AddServiceErrorsToActionResultTranslationFilters();
+
+			return services;
+		}
+
+		public static IServiceCollection AddServiceErrorsToActionResultTranslationFilters(this IServiceCollection services)
+		{
+			services.AddSingleton<ApplicationServiceErrorsTranslationFilterLogic>();
+			services.AddSingleton<ApplicationServiceErrorsTranslationFilterAttribute>();
+
+			return services;
+		}
+
+		public static IServiceCollection AddServiceErrorsToActionResultTranslator(this IServiceCollection services)
 		{
 			return services.AddSingleton<IServiceErrorsToActionResultTranslator, StandardServiceErrorsToActionResultTranslator>();
+		}
+
+		public static IServiceCollection AddServiceResponseToActionResultHelper(this IServiceCollection services)
+		{
+			return services.AddSingleton<ServiceResponseToActionResultHelper>();
 		}
 	}
 }

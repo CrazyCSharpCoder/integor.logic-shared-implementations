@@ -12,6 +12,12 @@ using ExtensibleRefreshJwtAuthentication.Refresh;
 using ExtensibleJwtAuthenticationTokensImplementations.Access;
 using ExtensibleJwtAuthenticationTokensImplementations.Refresh;
 
+using IntegorAspHelpers.MicroservicesInteraction.Authorization;
+using IntegorAspHelpers.MicroservicesInteraction.Authorization.Filters;
+using IntegorAspHelpers.MicroservicesInteraction.Authorization.Filters.Internal;
+
+using IntegorSharedAspHelpers.MicroservicesInteraction.Authorization;
+
 namespace IntegorServiceConfiguration.Authentication
 {
 	public static class AuthenticationServicesExtensions
@@ -20,6 +26,15 @@ namespace IntegorServiceConfiguration.Authentication
 		{
 			services.AddScoped<IOnServiceProcessingAccessTokenAccessor, OnServiceProcessingAccessTokenCookieAccessor>();
 			services.AddScoped<IOnServiceProcessingRefreshTokenAccessor, OnServiceProcessingRefreshTokenCookieAccessor>();
+
+			return services;
+		}
+
+		public static IServiceCollection AddAuthenticationValidation(this IServiceCollection services)
+		{
+			services.AddScoped<IClaimsValidator, StandardClaimsValidator>();
+			services.AddScoped<ValidateUserAuthenticationFilterLogic>();
+			services.AddScoped<ValidateUserAuthenticationFilterAttribute>();
 
 			return services;
 		}

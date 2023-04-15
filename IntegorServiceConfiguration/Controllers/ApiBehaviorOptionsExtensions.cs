@@ -12,8 +12,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 using IntegorErrorsHandling;
 using IntegorErrorsHandling.Converters;
 
-using IntegorAspHelpers.Http;
-
 namespace IntegorServiceConfiguration.Controllers
 {
 	public static class ApiBehaviorOptionsExtensions
@@ -33,13 +31,8 @@ namespace IntegorServiceConfiguration.Controllers
 			IResponseErrorsObjectCompiler errorsCompiler =
 				services.GetRequiredService<IResponseErrorsObjectCompiler>();
 
-			IHttpContextProcessedMarker processedMarker =
-				services.GetRequiredService<IHttpContextProcessedMarker>();
-
 			IErrorConvertationResult convertResult = converter.Convert(context.ModelState)!;
 			object errorBody = errorsCompiler.CompileResponse(convertResult);
-
-			processedMarker.SetProcessed(true);
 
 			return new BadRequestObjectResult(errorBody);
 		}
