@@ -41,8 +41,8 @@ namespace IntegorServiceConfiguration.IntegorServicesInteraction
 
 		public static IServiceCollection AddServiceErrorsToActionResultTranslationFilters(this IServiceCollection services)
 		{
-			services.AddSingleton<ApplicationServiceErrorsTranslationFilterLogic>();
-			services.AddSingleton<ApplicationServiceErrorsTranslationFilterAttribute>();
+			services.AddSingleton<ApplicationServiceErrorsTranslationLogic>();
+			services.AddSingleton<ApplicationServiceErrorsTranslationAttribute>();
 
 			return services;
 		}

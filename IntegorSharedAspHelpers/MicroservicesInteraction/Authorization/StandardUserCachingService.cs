@@ -10,20 +10,20 @@ using IntegorAspHelpers.MicroservicesInteraction.Authorization;
 
 namespace IntegorSharedAspHelpers.MicroservicesInteraction.Authorization
 {
-	public class StandardUserCachingService : IUserCachingService
-	{
-		public bool IsUserCached => _userCached != null;
+    public class StandardUserCachingService : IUserCachingService
+    {
+        public bool IsUserCached => _userCached != null;
 
-		private UserAccountInfoDto? _userCached = null;
+        private UserAccountInfoDto? _userCached = null;
 
-		public void CacheUser(UserAccountInfoDto user)
-		{
-			_userCached = user;
-		}
+        public void CacheUser(UserAccountInfoDto user)
+        {
+            _userCached = user;
+        }
 
-		public UserAccountInfoDto? GetCachedUser()
-		{
-			return _userCached;
-		}
-	}
+        public UserAccountInfoDto? GetCachedUser()
+        {
+            return _userCached;
+        }
+    }
 }

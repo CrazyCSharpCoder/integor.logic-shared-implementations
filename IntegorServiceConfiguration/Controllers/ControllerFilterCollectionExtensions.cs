@@ -40,7 +40,7 @@ namespace IntegorServiceConfiguration.Controllers
 
 		public static void AddServiceErrorsToActionResult(this FilterCollection filters)
 		{
-			filters.Add(new ApplicationServiceErrorsTranslationFilterAttribute());
+			filters.Add(new ApplicationServiceErrorsTranslationAttribute());
 		}
 	}
 }

@@ -12,6 +12,7 @@ using ExtensibleJwtAuthenticationTokensImplementations.Refresh;
 using IntegorPublicDto.Authorization.Users;
 
 using IntegorResponseDecoration.Parsing;
+
 using IntegorSharedResponseDecorators.Authorization.Parsers;
 using IntegorSharedResponseDecorators.Authorization.Decorators;
 

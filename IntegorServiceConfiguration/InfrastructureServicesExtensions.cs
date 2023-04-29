@@ -3,9 +3,11 @@ using Microsoft.Extensions.Configuration;
 
 using IntegorAspHelpers;
 using IntegorAspHelpers.MicroservicesInteraction.Authorization;
+using IntegorAspHelpers.MicroservicesInteraction.Authorization.Claims;
 
 using IntegorSharedAspHelpers;
 using IntegorSharedAspHelpers.MicroservicesInteraction.Authorization;
+using IntegorSharedAspHelpers.MicroservicesInteraction.Authorization.Claims;
 
 using ExtensibleRefreshJwtAuthentication;
 
@@ -29,7 +31,7 @@ namespace IntegorServiceConfiguration
 			return services;
 		}
 
-		public static IServiceCollection AddStatusCodeResponseBodyFactory(this IServiceCollection services)
+		public static IServiceCollection AddDefaultStatusCodeResponseBodyFactory(this IServiceCollection services)
 		{
 			return services.AddSingleton<IStatusCodeResponseBodyFactory, StandardStatusCodeResponseBodyFactory>();
 		}

@@ -6,33 +6,30 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Authentication;
 
-using IntegorAspHelpers.MicroservicesInteraction.Authorization.AuthenticationHandlers.Access;
+using IntegorAspHelpers.MicroservicesInteraction.Authorization.RemoteAuthentication;
 
 namespace IntegorServiceConfiguration.Authentication
 {
 	public static class AuthenticationBuilderExtensions
 	{
-		public static AuthenticationBuilder AddAccessAuthenticationViaMicroservice(
+		public static AuthenticationBuilder AddRemoteAccessRefreshAuthentication(
 			this AuthenticationBuilder authenticationBuilder,
-			string authenticationScheme = ValidateAccessAuthenticationDefaults.AuthenticationScheme,
+			string authenticationScheme = RemoteAccessRefreshAuthenticationDefaults.AuthenticationScheme,
 			string? displayName = null,
-			Action<ValidateAccessAuthenticationOptions>? configureOptions = null)
+			Action<RemoteAccessRefreshAuthenticationOptions>? configureOptions = null)
 		{
-			return authenticationBuilder.AddScheme<ValidateAccessAuthenticationOptions, ValidateAccessAuthenticationHandler>(authenticationScheme, displayName, configureOptions);
+			return authenticationBuilder.AddScheme<
+				RemoteAccessRefreshAuthenticationOptions,
+				RemoteAccessRefreshAuthenticationHandler>(
+				authenticationScheme, displayName, configureOptions);
 		}
 
-		public static AuthenticationBuilder AddAccessAuthenticationViaMicroservice(
+		public static AuthenticationBuilder AddRemoteAccessRefreshAuthentication(
 			this AuthenticationBuilder authenticationBuilder,
-			string authenticationScheme = ValidateAccessAuthenticationDefaults.AuthenticationScheme,
-			Action<ValidateAccessAuthenticationOptions>? configureOptions = null)
+			string authenticationScheme = RemoteAccessRefreshAuthenticationDefaults.AuthenticationScheme,
+			Action<RemoteAccessRefreshAuthenticationOptions>? configureOptions = null)
 		{
-			return authenticationBuilder.AddAccessAuthenticationViaMicroservice(authenticationScheme, null, configureOptions);
+			return authenticationBuilder.AddRemoteAccessRefreshAuthentication(authenticationScheme, null, configureOptions);
 		}
-
-		// TODO implement
-		//public static AuthenticationBuilder AddRefreshAuthenticationViaMicroservice(this AuthenticationBuilder authenticationBuilder)
-		//{
-
-		//}
 	}
 }
