@@ -32,5 +32,10 @@ namespace ExtensibleJwtAuthenticationTokensImplementations.Access
             _http.Request.Cookies.TryGetValue(HttpConstants.AccessTokenCookieName, out string token);
             return token;
         }
-    }
+
+		public void DeleteFromResponse()
+		{
+			_http.Response.Cookies.Delete(HttpConstants.AccessTokenCookieName);
+		}
+	}
 }

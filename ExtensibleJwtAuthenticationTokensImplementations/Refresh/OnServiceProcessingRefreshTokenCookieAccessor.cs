@@ -32,5 +32,10 @@ namespace ExtensibleJwtAuthenticationTokensImplementations.Refresh
             _http.Request.Cookies.TryGetValue(HttpConstants.RefreshTokenCookieName, out string token);
             return token;
         }
-    }
+
+		public void DeleteFromResponse()
+		{
+			_http.Response.Cookies.Delete(HttpConstants.RefreshTokenCookieName);
+		}
+	}
 }
