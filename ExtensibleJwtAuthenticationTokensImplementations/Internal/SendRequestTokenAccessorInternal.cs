@@ -35,7 +35,7 @@ namespace ExtensibleJwtAuthenticationTokensImplementations.Internal
 
             return setCookies
                 .Select(headerValue => CookieHelpers.GetSetCookieValue(headerValue, cookieTokenName))
-                .FirstOrDefault(filteredValue => !string.IsNullOrEmpty(filteredValue));
+                .FirstOrDefault(filteredValue => filteredValue != null);
         }
     }
 }

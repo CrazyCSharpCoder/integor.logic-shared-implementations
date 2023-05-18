@@ -5,12 +5,12 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<VersionPrefix>1.0.0.18</VersionPrefix>
+	<VersionPrefix>1.0.0.19</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExtensibleJwtAuthenticationTokensImplementations" Version="1.0.0.8" />
-    <PackageReference Include="IntegorSharedAspHelpers" Version="2.0.0.13" />
+    <PackageReference Include="ExtensibleJwtAuthenticationTokensImplementations" Version="1.0.0.9" />
+    <PackageReference Include="IntegorSharedAspHelpers" Version="2.0.0.14" />
     <PackageReference Include="IntegorSharedErrorHandlers" Version="2.0.0.4" />
     <PackageReference Include="IntegorSharedResponseDecorators" Version="2.0.0.6" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
