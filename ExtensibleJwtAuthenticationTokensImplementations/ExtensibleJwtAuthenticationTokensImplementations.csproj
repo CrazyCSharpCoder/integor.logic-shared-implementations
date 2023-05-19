@@ -5,12 +5,12 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<VersionPrefix>1.0.0.9</VersionPrefix>
+	<VersionPrefix>1.0.0</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExtensibleRefreshJwtAuthentication" Version="1.0.0.8" />
-    <PackageReference Include="IntegorGlobalConstants" Version="1.1.0.1" />
+    <PackageReference Include="ExtensibleRefreshJwtAuthentication" Version="1.0.0" />
+    <PackageReference Include="IntegorGlobalConstants" Version="1.1.0" />
   </ItemGroup>
 
 </Project>

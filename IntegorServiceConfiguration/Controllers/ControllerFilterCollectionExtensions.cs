@@ -23,7 +23,7 @@ namespace IntegorServiceConfiguration.Controllers
 
 		public static void AddErrorsHandling(this FilterCollection filters, params Type[] exceptionConverters)
 		{
-			filters.Add(new ExtensibleExeptionHandlingLazyFilterFactory(exceptionConverters));
+			filters.Add(new ExtensibleExceptionHandlingLazyFilterFactory(exceptionConverters));
 		}
 
 		/// <summary>

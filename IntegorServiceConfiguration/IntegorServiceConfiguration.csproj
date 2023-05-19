@@ -5,14 +5,14 @@
     <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-	<VersionPrefix>1.0.0.20</VersionPrefix>
+	<VersionPrefix>1.0.0</VersionPrefix>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="ExtensibleJwtAuthenticationTokensImplementations" Version="1.0.0.9" />
-    <PackageReference Include="IntegorSharedAspHelpers" Version="2.0.0.15" />
-    <PackageReference Include="IntegorSharedErrorHandlers" Version="2.0.0.4" />
-    <PackageReference Include="IntegorSharedResponseDecorators" Version="2.0.0.6" />
+    <PackageReference Include="ExtensibleJwtAuthenticationTokensImplementations" Version="1.0.0" />
+    <PackageReference Include="IntegorSharedAspHelpers" Version="2.0.0" />
+    <PackageReference Include="IntegorSharedErrorHandlers" Version="2.0.0" />
+    <PackageReference Include="IntegorSharedResponseDecorators" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="6.0.1" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.8" />
